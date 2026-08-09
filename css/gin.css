@@ -1,0 +1,937 @@
+.button_modal {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #28a745;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    left: 55vh;
+    top: 5vh;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    justify-content: center;
+    align-items: end;
+    z-index: 998;
+}
+
+.modal-content {
+    background: black;
+    padding: 20px;
+    width: 100vw;
+    position: relative;
+      height: 85vh;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+.container2 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+  color: #fff;
+  font-size: 28px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+.bag-price-gin img {
+  width: 25px;
+}
+.bags-grid {
+  display: flex;
+  gap: 1.5vh;
+  flex-wrap: wrap;
+  width: 25%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  overflow-y: scroll;
+}
+.bag-price img {
+  width: 25px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.bag-item {
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.bag-item:hover {
+  transform: translateY(-5px);
+}
+
+@keyframes legendary-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 152, 0, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(255, 152, 0, 0.6);
+  }
+}
+
+.bag-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: linear-gradient(90deg, rgb(6 190 222 / 44%) 0%, rgb(255 255 255 / 7%) 100%);
+  border-radius: 0.5vh;
+  padding: 1vh;
+}
+.bag-item.epic {
+  background: linear-gradient(90deg, #8ce960 0%, rgb(255 255 255 / 7%) 100%);
+}
+.bag-item.legendary {
+  background: linear-gradient(90deg, #fedc29 0%, rgb(255 255 255 / 7%) 100%);
+}
+/* .bag-item.common {
+    background: linear-gradient(90deg,#8C00FF 0%, rgb(255 255 255 / 7%) 100%);
+} */
+.bag-item.rare {
+  background: linear-gradient(90deg, #c0332e 0%, rgb(255 255 255 / 7%) 100%);
+}
+.bag-top {
+  width: 100%;
+  height: auto;
+  transition: none;
+  position: relative;
+  z-index: 2;
+}
+.flying {
+  position: fixed !important;
+  z-index: 1000 !important;
+}
+.bag-bottom {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0%;
+  z-index: 1;
+}
+
+.bag-item:hover .bag-image {
+  transform: scale(1.1);
+}
+
+.bag-name {
+  color: #fff;
+  font-size: 1.8vh;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.bag-description {
+  color: #ccc;
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.bag-rarity {
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.open-button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(45deg, #4caf50, #45a049);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.open-button:hover {
+  background: linear-gradient(45deg, #45a049, #4caf50);
+  transform: translateY(-2px);
+}
+
+.open-button:disabled {
+  background: #666;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: rgba(255, 0, 0, 0.9);
+  transform: scale(1.1);
+}
+
+/* Animation hiệu ứng mở túi */
+.bag-opening {
+  /* animation: bag-shake 0.5s ease-in-out; */
+}
+
+@keyframes bag-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px) rotate(-2deg);
+  }
+
+  75% {
+    transform: translateX(5px) rotate(2deg);
+  }
+}
+
+/* Popup phần thưởng - Style giống case-won */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* backdrop-filter: blur(10px); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.popup-overlay.show {
+  opacity: 1;
+  visibility: visible;
+  background: #000000de;
+}
+
+.popup-content {
+  border-radius: 0.5vh;
+  padding: 3vh;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-image: url("../images/won-background.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Title banner won.webp hiển thị phía trên item nhận được (xé túi mù) */
+.rewards-won-title {
+  position: absolute;
+  top: 18rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 34.3125rem;
+  height: 4rem;
+  background-image: url("../images/won.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.rewards-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2vh;
+  flex-wrap: wrap;
+  max-width: 90%;
+}
+
+.popup-title {
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Style reward-item giống border của case-won */
+.reward-item {
+  width: 12.5rem;
+  height: 12.5rem;
+  position: relative;
+  background-image: url("../../../assets/images/border.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: inline-block;
+  margin: 0.7rem;
+}
+
+.reward-item:hover {
+  background-image: url("../../../assets/images/border-hover.svg");
+  transform: scale(0.95);
+}
+
+.reward-icon {
+  width: 9.4375rem;
+  height: 7.0625rem;
+  left: 1.7rem;
+  top: 2rem;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reward-icon img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.reward-content {
+  position: absolute;
+  width: 12rem;
+  height: 2.125rem;
+  left: 0.1rem;
+  top: 9.1rem;
+  text-align: center;
+}
+
+.reward-text {
+  font-family: "Oswald", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.125rem;
+  font-size: 0.9375rem;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+.reward-amount {
+  color: #ccc;
+  font-size: 1.4vh;
+}
+
+.popup-close-btn {
+  color: white;
+  border: none;
+  border-radius: 0.5vh;
+  padding: 1vh 3vh;
+  font-size: 1.8vh;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-image: url("../images/collect.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background: rgb(255 255 255 / 15%);
+  border: solid 1px rgb(128 128 128 / 30%);
+  position: absolute;
+  bottom: 30.5vh;
+  width: 8rem;
+  height: 3rem;
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+  text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+}
+.popup-close-btn:hover {
+  transform: scale(0.95);
+}
+
+@keyframes parabolic-flight {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+
+  25% {
+    transform: translate(200px, -100px) rotate(15deg);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translate(1200px, 200px) rotate(60deg);
+    opacity: 0;
+  }
+}
+
+@keyframes tear-bag-flight {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  30% {
+    transform: translate(0, -2vh) rotate(10deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(10vh, 5vh) rotate(40deg);
+    opacity: 0;
+  }
+}
+
+/* Style cho container vật phẩm có thể trúng */
+.bag-items-container {
+  background: rgba(30, 30, 30, 0.9);
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 20px;
+  color: #fff;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.bag-item-detail {
+  border-radius: 0.5vh;
+  position: relative;
+  z-index: 1;
+  height: 10vh;
+  width: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bag-item-detail::before {
+  content: "";
+  position: absolute;
+  width: 9vh;
+  height: 9vh;
+  background: #53cde2;
+  border-radius: 0.5vh;
+  z-index: 0;
+  left: 0.5vh;
+  top: 0.5vh;
+  bottom: 0.5vh;
+  right: 0.5vh;
+  transform: rotate(15deg);
+}
+.bag-item-detail::after {
+  content: "";
+  position: absolute;
+  border-radius: 0.5vh;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(90deg, rgba(4, 36, 58, 1) 0%, rgba(0, 0, 0, 1) 100%);
+  border: 0.1vh solid #53cde2;
+}
+.bag-item-detail .item-label {
+  flex: 1;
+}
+
+.bag-item-detail .item-chance {
+  color: #ccc;
+  min-width: 120px;
+  text-align: right;
+}
+
+.bag-item {
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.3s ease;
+  user-select: none;
+}
+.bag-item:hover,
+.bag-item.active {
+  background: linear-gradient(90deg, rgba(4, 79, 92, 1) 0%, rgba(255, 255, 255, 0) 100%);
+  box-shadow: inset 0vh 0vh 20px 15px #00000069;
+}
+#bag-info-items-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2vh;
+  width: fit-content;
+  margin: 0 auto;
+}
+.item-label {
+  z-index: 99;
+  left: 0;
+  right: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.item-label img {
+  height: 7vh;
+}
+/* Style cho panel thông tin túi */
+.bag-info-panel {
+  color: #fff;
+  width: 75%;
+}
+
+.bag-info-panel h2 {
+  margin-bottom: 10px;
+  font-size: 26px;
+  text-align: center;
+}
+
+.bag-info-panel p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.bag-info-panel .button-group {
+  display: flex;
+  justify-content: center;
+  gap: 3vh;
+  width: 35%;
+  margin: 1vh auto 3vh;
+  height: 5vh;
+}
+
+.bag-info-panel .open-button {
+  padding: 1.2vh 2vh;
+  font-size: 2.6vh;
+  font-weight: bold;
+  border-radius: 0.5vh;
+  border: none;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background: linear-gradient(270deg, rgba(4, 36, 58, 0) 0%, rgba(83, 205, 226, 1) 50%, rgba(4, 36, 58, 0) 100%);
+  display: flex;
+  align-items: center;
+  gap: 1vh;
+}
+.bag-price {
+  display: flex;
+  align-items: center;
+}
+button#open-bag-5 {
+  color: #e06020;
+}
+.bag-info-panel .open-button:hover {
+  transform: scale(0.9);
+}
+.bag-image {
+  width: 15vh;
+  height: 15vh;
+  transition: transform 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transform: rotate(-15deg);
+}
+.bag-image-info {
+  margin: 0 auto;
+  width: 40vh;
+  height: 40vh;
+  transition: transform 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+img#bag-info-image,
+img#bag-info-image2 {
+}
+img#bag-info-image {
+  height: auto;
+  transition: none;
+  position: relative;
+  z-index: 2;
+}
+img#bag-info-image2 {
+  height: auto;
+  position: absolute;
+  top: 0%;
+  z-index: 1;
+}
+/* Màu sắc theo độ hiếm */
+/* .rarity-common {
+    border-left: 5px solid #4CAF50;
+}
+
+.rarity-rare {
+    border-left: 5px solid #2196F3;
+}
+
+.rarity-epic {
+    border-left: 5px solid #9C27B0;
+}
+
+.rarity-legendary {
+    border-left: 5px solid #FF9800;
+} */
+/* .rarity-legendary::after {
+    background: linear-gradient(90deg, rgb(160 15 187) 0%, rgb(0, 0, 0) 100%);
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    border-radius: 0.5vh;
+    border-width: 0.1vh;
+    border-style: solid;
+    border-color: rgb(83, 205, 226);
+    border-image: initial;
+}
+.rarity-epic::after {
+    background: linear-gradient(90deg, rgb(15, 187, 107) 0%, rgb(0, 0, 0) 100%);
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    border-radius: 0.5vh;
+    border-width: 0.1vh;
+    border-style: solid;
+    border-color: rgb(83, 205, 226);
+    border-image: initial;
+}
+.rarity-rare::after {
+    background: linear-gradient(90deg, rgb(187, 69, 15) 0%, rgb(0, 0, 0) 100%);
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    border-radius: 0.5vh;
+    border-width: 0.1vh;
+    border-style: solid;
+    border-color: rgb(83, 205, 226);
+    border-image: initial;
+}
+.rarity-common::after {
+    background: linear-gradient(90deg, rgb(23, 151, 6) 0%, rgb(0, 0, 0) 100%);
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    border-radius: 0.5vh;
+    border-width: 0.1vh;
+    border-style: solid;
+    border-color: rgb(83, 205, 226);
+    border-image: initial;
+} */
+/* .reward-icon.sparkle {
+    border-radius: 0.5vh;
+    background: radial-gradient(circle,rgb(63 94 251 / 56%) 0%, rgb(252 70 107 / 58%) 100%);
+}
+.reward-icon.legendary{
+    border-radius: 0.5vh;
+    background: radial-gradient(circle,rgba(255, 94, 0, 0.56) 0%, rgba(255, 0, 0, 0.58) 100%);
+} */
+
+.bag-image-info {
+  animation: shake 0.6s infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  10% {
+    transform: translate(-0.3vh, 0) rotate(-1deg);
+  }
+  20% {
+    transform: translate(0.3vh, 0) rotate(1deg);
+  }
+  30% {
+    transform: translate(-0.3vh, 0) rotate(-1deg);
+  }
+  40% {
+    transform: translate(0.3vh, 0) rotate(1deg);
+  }
+  50% {
+    transform: translate(-0.2vh, 0) rotate(-0.5deg);
+  }
+  60% {
+    transform: translate(0.2vh, 0) rotate(0.5deg);
+  }
+  70% {
+    transform: translate(-0.1vh, 0) rotate(-0.5deg);
+  }
+  80% {
+    transform: translate(0.1vh, 0) rotate(0.5deg);
+    -webkit-transform: translate(0.1vh, 0) rotate(0.5deg);
+    -moz-transform: translate(0.1vh, 0) rotate(0.5deg);
+    -ms-transform: translate(0.1vh, 0) rotate(0.5deg);
+    -o-transform: translate(0.1vh, 0) rotate(0.5deg);
+}
+  90% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+.bag-price-gin {
+  position: absolute;
+  right: 1vh;
+  bottom: 1vh;
+  z-index: 999;
+  color: white;
+  font-weight: bold;
+  font-size: 1.6vh;
+  display: flex;
+  align-items: center;
+  gap: 0.5vh;
+}
+
+/* Bag Opening Panel - giống case-opening */
+.bag-opening-panel {
+  width: 100%;
+  overflow: hidden;
+}
+
+.bag-opening-panel .bag-opening {
+  position: absolute;
+  width: 100%;
+  height: 5%;
+  left: 0rem;
+  top: 38.5rem;  /* Tăng từ 34.9rem để tránh ảnh túi đè lên first-info */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(270deg, rgba(32, 38, 48, 0) 0%, rgba(72, 85, 109, 0.25) 50.24%, rgba(32, 38, 48, 0) 100%);
+}
+
+.bag-opening-panel .bag-opening > h1 {
+  position: absolute;
+  width: 16.625rem;
+  height: 1.5rem;
+  font-family: "Oswald", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  font-size: 1.25rem;
+  text-align: center;
+  color: #FBB90E;
+  text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+}
+
+.bag-opening-panel .bag-case {
+  width: 20rem;
+  height: 20rem;
+  top: -19.5rem;
+  left: 30rem;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bag-opening-panel .bag-case .bag-image-info {
+  width: 20rem;
+  height: 20rem;
+  position: relative;
+}
+
+.bag-opening-panel .bag-case .bag-top,
+.bag-opening-panel .bag-case .bag-bottom {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.bag-opening-panel .bag-case > h1 {
+  position: absolute;
+  width: 30.8125rem;
+  height: 2.1875rem;
+  left: 22.4rem;
+  top: 2.4rem;
+  font-family: "Joyride-2";
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.18755rem;
+  font-size: 2.25rem;
+  text-align: center;
+  color: #FBB90E;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+}
+
+.bag-opening-panel .bag-case > h2 {
+  position: absolute;
+  width: 17.6875rem;
+  height: 3.375rem;
+  left: 29.5rem;
+  top: 5.7rem;
+  font-family: "Oswald", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.125rem;
+  font-size: 0.9375rem;
+  color: #3B5075;
+}
+
+.bag-opening-panel .button-group {
+  position: absolute;
+  left: 60rem;
+  top: -8.3rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.bag-opening-panel .open-button {
+  min-width: 11rem;
+  height: 3.625rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: "Oswald", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04rem;
+  transition: filter 0.15s, transform 0.1s;
+  padding: 0 1rem;
+}
+
+.bag-opening-panel .open-bag-1 {
+  background-image: url(../images/button-active.svg);
+  color: cyan;
+  text-shadow: 0 0 14px rgba(0, 255, 255, 0.7), 0 0 28px rgba(0, 255, 255, 0.35);
+}
+
+.bag-opening-panel .open-bag-5 {
+  background-image: url(../images/button.svg);
+  color: cyan !important;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.45) !important;
+}
+
+.bag-opening-panel .bag-opening-live {
+  position: absolute;
+  left: 6rem;
+  right: 2rem;
+  height: 26.5rem;
+  top: 42.5rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.bag-opening-panel .bag-opening-live::-webkit-scrollbar {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.bag-opening-panel .bag-opening-live #bag-info-items-list {
+  padding-bottom: 2rem;
+  /* Không dùng grid, để items tự wrap như case-opening */
+}
+
+/* CSS cho border và item giống case-opening-live */
+.bag-opening-panel .bag-opening-live .border {
+  display: inline-block;
+  width: 12.5rem;
+  height: 12.5rem;
+  margin-left: 0.7rem;
+  margin-top: 0.5rem;
+  position: relative;
+  background-image: url("../images/border.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.bag-opening-panel .bag-opening-live .border:hover {
+  background-image: url("../images/border-hover.svg");
+  transform: scale(0.95);
+}
+
+.bag-opening-panel .bag-opening-live .border .item {
+  width: 9.4375rem;
+  height: 7.0625rem;
+  left: 1.7rem;
+  top: 2rem;
+  position: absolute;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.bag-opening-panel .bag-opening-live .border .label {
+  position: absolute;
+  width: 12.4rem;
+  height: 1.125rem;
+  top: 10.1rem;
+  font-family: "Oswald", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.125rem;
+  font-size: 1rem;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
